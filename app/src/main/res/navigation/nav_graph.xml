@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/AlbumsListFragment">
+
+    <fragment
+        android:id="@+id/AlbumsListFragment"
+        android:name="com.assignment.ui.fragments.AlbumsListFragment"
+        android:label="@string/fragment_albums_list"
+        tools:layout="@layout/fragment_albums_list">
+
+        <action
+            android:id="@+id/action_AlbumsListFragment_to_AlbumDetailFragment"
+            app:destination="@id/AlbumDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AlbumDetailFragment"
+        android:name="com.assignment.ui.fragments.AlbumDetailFragment"
+        android:label="@string/fragment_album_detail"
+        tools:layout="@layout/fragment_album_detail">
+
+        <action
+            android:id="@+id/action_AlbumDetailFragment_to_VisitWebsiteFragment"
+            app:destination="@id/VisitWebsiteFragment" />
+
+        <argument
+            android:name="albumId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="albumTitle"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/VisitWebsiteFragment"
+        android:name="com.assignment.ui.fragments.VisitWebsiteFragment"
+        android:label="@string/website"
+        tools:layout="@layout/fragment_visit_website">
+
+        <argument
+            android:name="url"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>
