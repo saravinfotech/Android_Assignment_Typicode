@@ -6,7 +6,7 @@
 
     <string name="unknown_host_error">Can\'t connect to server.\nPlease check your internet connection.</string>
     <string name="connection_time_out">Connection TimeOut.\nPlease check your internet connection.</string>
-    <string name="api_error_message">Ooops\nSomething went wrong while calling API.\nPlease try again later.</string>
+    <string name="api_error_message">Oops\nSomething went wrong while calling API.\nPlease try again later.</string>
 
     <string name="user_details">User Details</string>
     <string name="show_album_photos">Show Album Photos</string>
