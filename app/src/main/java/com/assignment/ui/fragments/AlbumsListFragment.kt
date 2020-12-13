@@ -2,6 +2,7 @@ package com.assignment.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
@@ -27,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AlbumsListFragment : Fragment() {
+class AlbumsListFragment : BaseFragment() {
 
     // Binding is used to replace the findViewById
     private var binding: FragmentAlbumsListBinding? = null
@@ -65,6 +66,7 @@ class AlbumsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Logger.info("Albums list - onViewCreated called")
+        showLoading(true)
 
         val navController = Navigation.findNavController(view)
 
@@ -132,7 +134,8 @@ class AlbumsListFragment : Fragment() {
                 models?.let { storedModels ->
                     // if we found albums locally then hide progress bar
                     if (storedModels.isNotEmpty()) {
-                        binding?.progressBar?.visibility = View.GONE
+                        showLoading(false)
+                        //binding?.progressBar?.visibility = View.GONE
                     }
                     listOfAlbums.addAll(storedModels)
                 }
@@ -159,16 +162,19 @@ class AlbumsListFragment : Fragment() {
         when (genericResponse.status) {
 
             // api is in loading state
-            Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
+            Status.LOADING -> showLoading(true)
+            //binding?.progressBar?.visibility = View.VISIBLE
 
             // api request completed
             Status.SUCCESS -> {
-                binding?.progressBar?.visibility = View.GONE
+                showLoading(false)
+               // binding?.progressBar?.visibility = View.GONE
             }
 
             // something went wrong while calling api
             Status.ERROR -> {
-                binding?.progressBar?.visibility = View.GONE
+                showLoading(false)
+                //binding?.progressBar?.visibility = View.GONE
                 Message.showToast(
                     requireActivity(),
                     Store.getErrorMessage(genericResponse.error, requireContext())

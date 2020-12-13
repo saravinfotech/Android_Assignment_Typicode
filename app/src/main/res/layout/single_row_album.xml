@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{model.title}"
                 android:fontFamily="@font/caviar_dreams"
-                android:textColor="@color/app_text_ui_color_grey"
+                style="@style/Theme.Assignment.TextViewColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

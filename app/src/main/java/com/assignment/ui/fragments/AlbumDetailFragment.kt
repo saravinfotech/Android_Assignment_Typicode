@@ -24,7 +24,7 @@ import com.assignment.ui.viewModels.AlbumDetailFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AlbumDetailFragment : Fragment() {
+class AlbumDetailFragment : BaseFragment() {
 
     // Binding is used to replace the findViewById
     private var binding: FragmentAlbumDetailBinding? = null
@@ -133,7 +133,8 @@ class AlbumDetailFragment : Fragment() {
             viewModel.getUserFromLocalRepo(userId).observe(viewLifecycleOwner, { user ->
                 user?.let {
                     // if we found user details locally then hide progress bar and show details view
-                    binding?.progressBar?.visibility = View.GONE
+                    showLoading(false)
+                    //binding?.progressBar?.visibility = View.GONE
                     binding?.detailsView?.visibility = View.VISIBLE
                     userWebSiteLink = it.website
                     layout.userModel = it
@@ -144,7 +145,8 @@ class AlbumDetailFragment : Fragment() {
             viewModel.getPostByIdFromLocalDatabase(albumId).observe(viewLifecycleOwner, { user ->
                 user?.let {
                     // if we found user details locally then hide progress bar and show details view
-                    binding?.progressBar?.visibility = View.GONE
+                    showLoading(false)
+                   // binding?.progressBar?.visibility = View.GONE
                     binding?.detailsView?.visibility = View.VISIBLE
                     layout.postModel = it
                 }
@@ -156,7 +158,8 @@ class AlbumDetailFragment : Fragment() {
                 models?.let {
                     // if we found album's photos locally then hide progress bar and show details view
                     if (it.isNotEmpty()) {
-                        binding?.progressBar?.visibility = View.GONE
+                        showLoading(false)
+                       // binding?.progressBar?.visibility = View.GONE
                         binding?.detailsView?.visibility = View.VISIBLE
                     }
                     listOfAlbumPhotos.addAll(it)
@@ -206,19 +209,22 @@ class AlbumDetailFragment : Fragment() {
         when (genericResponse.status) {
             // api is in loading state
             Status.LOADING -> {
-                binding?.progressBar?.visibility = View.VISIBLE
+                showLoading(true)
+                //binding?.progressBar?.visibility = View.VISIBLE
                 binding?.detailsView?.visibility = View.GONE
             }
 
             // api request completed
             Status.SUCCESS -> {
-                binding?.progressBar?.visibility = View.GONE
+                showLoading(false)
+                //binding?.progressBar?.visibility = View.GONE
                 binding?.detailsView?.visibility = View.VISIBLE
             }
 
             // something went wrong while calling api
             Status.ERROR -> {
-                binding?.progressBar?.visibility = View.GONE
+                showLoading(false)
+                //binding?.progressBar?.visibility = View.GONE
                 binding?.detailsView?.visibility = View.VISIBLE
                 showToast(
                     requireActivity(),
