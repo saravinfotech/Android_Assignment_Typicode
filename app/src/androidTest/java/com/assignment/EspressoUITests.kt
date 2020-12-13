@@ -1,68 +1,29 @@
 package com.assignment
 
 import android.content.Context
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.assignment.data.api.ApiService
-import com.assignment.data.repositories.remote.RemoteRepo
-import com.assignment.data.repositories.remote.RemoteRepoImpl
-import com.assignment.ui.activities.MainActivity
 import com.assignment.ui.adapters.AlbumsListAdapter
-import com.google.gson.Gson
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.junit.*
+import org.junit.Assert
+import org.junit.Test
 import org.junit.runner.RunWith
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class EspressoUITests {
-
-    @get:Rule
-    var myActivityRule: ActivityScenarioRule<MainActivity> =
-            ActivityScenarioRule(MainActivity::class.java)
-
-    private val server: MockWebServer = MockWebServer()
-    private val serverPort = 8000
-
-    private lateinit var apiService: ApiService
-    private lateinit var placeholderApi: RemoteRepo
-
-    @Before
-    fun init() {
-        server.start(serverPort)
-
-        apiService = Retrofit.Builder()
-                .baseUrl(server.url("/"))
-                .addConverterFactory(GsonConverterFactory.create(Gson()))
-                .build()
-                .create(ApiService::class.java)
-        placeholderApi = RemoteRepoImpl(apiService)
-    }
-
-    @After
-    fun shutdown() {
-        server.shutdown()
-    }
+class EspressoUITests : BaseTestClass(){
 
     @Test
     fun appContextGivesCorrectPackageName() {
-        val appContext: Context = androidx.test.core.app.ApplicationProvider.getApplicationContext()
+        val appContext: Context = getApplicationContext()
         Assert.assertEquals("com.assignment", appContext.packageName)
     }
 
@@ -190,26 +151,4 @@ class EspressoUITests {
             }
         }
     }
-
-    companion object {
-        private fun atPosition(
-                position: Int,
-                itemMatcher: Matcher<View?>
-        ): Matcher<View?> {
-            return object : BoundedMatcher<View?, RecyclerView>(RecyclerView::class.java) {
-                override fun describeTo(description: Description) {
-                    description.appendText("has item at position $position: ")
-                    itemMatcher.describeTo(description)
-                }
-
-                override fun matchesSafely(view: RecyclerView): Boolean {
-                    val viewHolder = view.findViewHolderForAdapterPosition(position)
-                            ?: // has no item on such position
-                            return false
-                    return itemMatcher.matches(viewHolder.itemView)
-                }
-            }
-        }
-    }
-
 }
