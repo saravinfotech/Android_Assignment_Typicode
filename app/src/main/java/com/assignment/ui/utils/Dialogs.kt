@@ -2,10 +2,7 @@ package com.assignment.ui.utils
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
-import android.widget.Toast
 import com.assignment.R
-import com.assignment.ui.interfaces.AlertDialogInterface
 
 /*
  * Dialogs Object provides all types of Alert Dialog and Toast
