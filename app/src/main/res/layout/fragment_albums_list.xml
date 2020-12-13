@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/app_background_grey"
     android:padding="10dp"
-    tools:context=".ui.fragments.AlbumsListFragment">
+    tools:context=".ui.fragments.AlbumsListFragment"
+    tools:ignore="Overdraw">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
