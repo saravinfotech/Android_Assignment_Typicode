@@ -21,7 +21,7 @@ import com.assignment.data.models.AlbumModel
 import com.assignment.databinding.FragmentAlbumsListBinding
 import com.assignment.ui.adapters.AlbumsListAdapter
 import com.assignment.ui.interfaces.AlbumsListAdapterClickEvents
-import com.assignment.ui.utils.Dialogs
+import com.assignment.viewutils.Message
 import com.assignment.ui.viewModels.AlbumsListFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -169,7 +169,7 @@ class AlbumsListFragment : Fragment() {
             // something went wrong while calling api
             Status.ERROR -> {
                 binding?.progressBar?.visibility = View.GONE
-                Dialogs.showMessage(
+                Message.showToast(
                     requireActivity(),
                     Store.getErrorMessage(genericResponse.error, requireContext())
                 )

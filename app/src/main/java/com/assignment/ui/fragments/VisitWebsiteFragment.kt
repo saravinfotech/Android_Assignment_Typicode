@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import com.assignment.R
 import com.assignment.common.Logger
 import com.assignment.databinding.FragmentVisitWebsiteBinding
-import com.assignment.ui.utils.Dialogs
+import com.assignment.viewutils.Message
 import kotlinx.android.synthetic.main.fragment_visit_website.*
 
 class VisitWebsiteFragment : Fragment() {
@@ -88,7 +88,7 @@ class VisitWebsiteFragment : Fragment() {
                     if (activity != null && isAdded) {
                         // error - show error message
                         layout.progressBar.visibility = View.GONE
-                        Dialogs.showMessage(
+                        Message.showToast(
                             requireActivity(),
                             "${getString(R.string.api_error_message)}\n${error}"
                         )

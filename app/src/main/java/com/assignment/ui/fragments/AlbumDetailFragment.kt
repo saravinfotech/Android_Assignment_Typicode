@@ -19,7 +19,7 @@ import com.assignment.data.models.PostModel
 import com.assignment.databinding.FragmentAlbumDetailBinding
 import com.assignment.ui.adapters.AlbumPhotosAdapter
 import com.assignment.ui.adapters.UserCommentsAdapter
-import com.assignment.ui.utils.Dialogs
+import com.assignment.viewutils.Message.showToast
 import com.assignment.ui.viewModels.AlbumDetailFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -220,7 +220,7 @@ class AlbumDetailFragment : Fragment() {
             Status.ERROR -> {
                 binding?.progressBar?.visibility = View.GONE
                 binding?.detailsView?.visibility = View.VISIBLE
-                Dialogs.showMessage(
+                showToast(
                     requireActivity(),
                     Store.getErrorMessage(genericResponse.error, requireContext())
                 )
