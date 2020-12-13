@@ -24,7 +24,7 @@ class AlbumsListAdapter(
 ) : RecyclerView.Adapter<AlbumsListAdapter.ViewClass>() {
 
     var context: Context? = null
-    var originalList: ArrayList<AlbumModel> = list
+    private var originalList: ArrayList<AlbumModel> = list
 
     // view holder class
     inner class ViewClass(val binding: SingleRowAlbumBinding) :
