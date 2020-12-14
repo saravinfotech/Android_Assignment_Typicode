@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 class AlbumsListFragmentTest : BaseTestClass() {
 
     @Test
-    fun testHeading() {
+    fun testTitleBarFunctions() {
         val pageTitle =
             Espresso.onView(viewMatcher("Albums", R.id.toolbar, LinearLayout::class.java))
         pageTitle.check(ViewAssertions.matches(withText("Albums")))
