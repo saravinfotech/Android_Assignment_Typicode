@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,7 @@ import com.assignment.viewutils.load
  */
 class AlbumPhotosAdapter(
     private var list: ArrayList<AlbumPhotosModel>,
-    private val imagesCountInSingleRow: Int
+    private val imagesCountInSingleRow: Int,
 ) : RecyclerView.Adapter<AlbumPhotosAdapter.ViewClass>() {
 
     private var context: Context? = null
@@ -48,7 +49,7 @@ class AlbumPhotosAdapter(
     ) {
         var drawable: Drawable? = getPlaceHolderImage()
         if (drawable == null) {
-            drawable = context?.getDrawable(R.drawable.placeholder)
+            drawable = context?.let { ContextCompat.getDrawable(it, R.drawable.placeholder) }
         }
         drawable?.let {
             holder.binding.image.load(

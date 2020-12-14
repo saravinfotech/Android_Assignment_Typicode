@@ -3,6 +3,7 @@ package com.assignment.ui.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.recyclerview.widget.RecyclerView
 import com.assignment.R
@@ -83,12 +84,14 @@ class AlbumsListAdapter(
         position: Int,
         holder: ViewClass
     ) {
-        context?.getDrawable(R.drawable.placeholder)?.let {
-            list[position].thumbnailUrl?.let { it1 ->
-                holder.binding.image.load(
-                    it1,
-                    it
-                )
+        context?.let {
+            ContextCompat.getDrawable(it, R.drawable.placeholder)?.let {
+                list[position].thumbnailUrl?.let { it1 ->
+                    holder.binding.image.load(
+                        it1,
+                        it
+                    )
+                }
             }
         }
     }
