@@ -16,40 +16,16 @@ class AlbumDetailFragmentViewModel @ViewModelInject constructor(
 
     private val apiResponse: MutableLiveData<GenericResponse> = MutableLiveData()
 
-    /**
-     * This method let the activity knows the status of API call
-     * status can be
-     * Loading
-     * Error
-     * Success
-     */
     fun apiResponse() = apiResponse
 
-    /**
-     * Get User Model from local database for given user id
-     */
     fun getUserFromLocalRepo(userId: Int) = localRepo.getUser(userId)
 
-    /**
-     * Get Album Photos from local database for given album id
-     */
     fun getAlbumPhotosFromLocalRepo(albumId: Int) = localRepo.getAlbumPhotos(albumId)
 
-    /**
-     * Get Post Model by id
-     */
     fun getPostByIdFromLocalDatabase(id: Int) = localRepo.getPostById(id)
 
-    /**
-     * Get List of Post Models from local database
-     */
     fun getPostsByUserIdFromLocalDatabase(userId: Int) = localRepo.getPostsByUserId(userId)
 
-    /**
-     * getAlbumPhotos(albumId: Int)
-     *
-     * Get album's photos
-     */
     fun getAlbumPhotosFromRemoteRepo(albumId: Int) = viewModelScope.launch {
         // set api response to loading
         apiResponse.value = GenericResponse.loading()
@@ -74,11 +50,6 @@ class AlbumDetailFragmentViewModel @ViewModelInject constructor(
         }
     }
 
-    /**
-     * getUser(userId: Int)
-     *
-     * Get the details about user
-     */
     fun getUserFromRemoteRepo(userId: Int) = viewModelScope.launch {
         apiResponse.value = GenericResponse.loading()
         try {
@@ -102,11 +73,6 @@ class AlbumDetailFragmentViewModel @ViewModelInject constructor(
         }
     }
 
-    /**
-     * getPostById(id: Int)
-     *
-     * Get Post by id
-     */
     fun getPostByIdFromRemoteRepo(id: Int) = viewModelScope.launch {
         apiResponse.value = GenericResponse.loading()
         try {
@@ -130,11 +96,6 @@ class AlbumDetailFragmentViewModel @ViewModelInject constructor(
         }
     }
 
-    /**
-     * getPostsByUserId(userId: Int)
-     *
-     * Get List of Posts by user id
-     */
     fun getPostsByUserIdFromRemoteRepo(userId: Int) = viewModelScope.launch {
         apiResponse.value = GenericResponse.loading()
         try {

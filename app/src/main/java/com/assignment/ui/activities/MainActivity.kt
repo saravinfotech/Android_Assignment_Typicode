@@ -12,9 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    // Binding is used to replace the findViewById
     private lateinit var binding: ActivityMainBinding
-    // nav controller - used with navigation components
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,16 +21,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        // find the Nav Host Fragment
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
 
-        // get nav controller from nav host fragment
         navController = navHostFragment.navController
 
-        // setting up action bar with nav controller
-        // so that it shows back button when other fragments are loaded in place of main or first fragment
-        // and upon click of back button, it correctly move the user back to expected fragment
+        //Back button handler
         NavigationUI.setupActionBarWithNavController(this, navController)
 
     }

@@ -2,10 +2,6 @@ package com.assignment.common
 
 import android.util.Log
 
-/**
- * Used to log text to Logcat
- * Used only during development and debugging purposes
- */
 object Logger {
 
     private const val generalTag = "App"

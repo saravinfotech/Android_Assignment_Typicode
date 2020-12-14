@@ -13,14 +13,12 @@ import androidx.fragment.app.Fragment
 import com.assignment.R
 import com.assignment.common.Logger
 import com.assignment.databinding.FragmentVisitWebsiteBinding
-import com.assignment.viewutils.Message
+import com.assignment.viewutils.MessageType
 import kotlinx.android.synthetic.main.fragment_visit_website.*
 
 class VisitWebsiteFragment : Fragment() {
 
-    // Binding is used to replace the findViewById
     private var binding: FragmentVisitWebsiteBinding? = null
-
     private var url = ""
 
     override fun onCreateView(
@@ -31,36 +29,15 @@ class VisitWebsiteFragment : Fragment() {
         return binding?.root
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.let { layout ->
+            getUrlFromBundle()
+            setUpWebView(layout)
 
-            /**
-             * Take the data from arguments
-             */
-            arguments?.let {
-                val args = VisitWebsiteFragmentArgs.fromBundle(it)
-                url = args.url
-                if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                    url = "http://$url"
-                }
-            }
-
-            // enable javascript
-            val webViewSettings = layout.webView.settings
-            webViewSettings.javaScriptEnabled = true
-
-            // set scroll bar
-            layout.webView.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
-
-            // attach WebViewClient to WebView
             layout.webView.webViewClient = object : WebViewClient() {
 
-                /**
-                 * Url is change, should it load changed url or previous url?
-                 */
                 override fun shouldOverrideUrlLoading(view: WebView?, urlToLoad: String?): Boolean {
                     Logger.info("shouldOverrideUrlLoading - $urlToLoad")
                     /**
@@ -73,8 +50,6 @@ class VisitWebsiteFragment : Fragment() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     Logger.info("onPageFinished - $url")
-                    // loading is finished
-                    // hide progress bar
                     layout.progressBar.visibility = View.GONE
                 }
 
@@ -86,9 +61,8 @@ class VisitWebsiteFragment : Fragment() {
                     super.onReceivedError(view, request, error)
                     Logger.info("onReceivedError - $error")
                     if (activity != null && isAdded) {
-                        // error - show error message
                         layout.progressBar.visibility = View.GONE
-                        Message.showToast(
+                        MessageType.showInfoMessage(
                             requireActivity(),
                             "${getString(R.string.api_error_message)}\n${error}"
                         )
@@ -100,6 +74,23 @@ class VisitWebsiteFragment : Fragment() {
             Logger.info("webView.loadUrl(url) - $url")
             webView.loadUrl(url)
 
+        }
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setUpWebView(layout: FragmentVisitWebsiteBinding) {
+        val webViewSettings = layout.webView.settings
+        webViewSettings.javaScriptEnabled = true
+        layout.webView.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
+    }
+
+    private fun getUrlFromBundle() {
+        arguments?.let {
+            val args = VisitWebsiteFragmentArgs.fromBundle(it)
+            url = args.url
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://$url"
+            }
         }
     }
 }

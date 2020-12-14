@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.assignment.common.Constants
 import com.assignment.data.api.ApiService
-import com.assignment.data.repositories.local.DatabaseConstants
 import com.assignment.data.repositories.local.LocalDatabase
 import com.assignment.data.repositories.local.LocalRepo
 import com.assignment.data.repositories.local.LocalRepoImpl
@@ -20,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 /**
- * Modules Object is used for providing implementation of methods required for HILT or dependency injection
+ * Modules providing implementation of methods required for HILT or dependency injection
  */
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -65,7 +64,7 @@ object Modules {
         return Room.databaseBuilder(
             context.applicationContext,
             LocalDatabase::class.java,
-            DatabaseConstants.DATABASE_NAME
+            Constants.DATABASE_NAME
         ).fallbackToDestructiveMigration().build()
     }
 

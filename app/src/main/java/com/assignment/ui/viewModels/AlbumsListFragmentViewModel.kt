@@ -20,25 +20,9 @@ class AlbumsListFragmentViewModel @ViewModelInject constructor(
 
     private val apiResponse: MutableLiveData<GenericResponse> = MutableLiveData()
 
-    /**
-     * This method let the activity knows the status of API call
-     * status can be
-     * Loading
-     * Error
-     * Success
-     */
     fun apiResponse() = apiResponse
-
-    /**
-     * Get List of Album Models from local database
-     */
     fun getAlbumsFromLocalRepo() = localRepo.getAlbums()
 
-    /**
-     * getAlbums()
-     *
-     * Get the list of albums
-     */
     fun getAlbumsFromRemoteRepo() = viewModelScope.launch {
         apiResponse.value = GenericResponse.loading()
         try {
@@ -63,11 +47,6 @@ class AlbumsListFragmentViewModel @ViewModelInject constructor(
         }
     }
 
-    /**
-     * getAlbumPhotos()
-     *
-     * Get the list of albums
-     */
     private fun getAlbumPhotosFromRemoteRepo(albumsModel: List<AlbumModel>) = CoroutineScope(Dispatchers.IO).launch {
         try {
             remoteRepo.getAlbumPhotos().let { response ->

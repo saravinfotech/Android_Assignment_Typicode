@@ -9,7 +9,8 @@ import com.assignment.data.models.UserModel
 
 /**
  * LocalDatabase - Abstract class for extending the Room database
- * We have also mentioned the database tables ( model classes, i-e AlbumModel,AlbumPhotosModel & UserModel ) and database version
+ * Used to define the database tables from the model classes ued
+ * i-e AlbumModel,AlbumPhotosModel & UserModel ) and database version
  */
 @Database(
     entities = [AlbumModel::class, AlbumPhotosModel::class, UserModel::class, PostModel::class],

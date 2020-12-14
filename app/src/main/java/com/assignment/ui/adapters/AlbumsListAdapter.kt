@@ -8,15 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.assignment.R
 import com.assignment.data.models.AlbumModel
 import com.assignment.databinding.SingleRowAlbumBinding
-import com.assignment.ui.interfaces.AlbumsListAdapterClickEvents
-import com.squareup.picasso.Picasso
+import com.assignment.ui.callbacks.AlbumsListAdapterClickEvents
+import com.assignment.viewutils.load
 import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * AlbumsListAdapter controls how the list of Albums will be shown in the App
- *
- * Takes 2 arguments - ArrayList of AlbumModel and listener of type AlbumsListAdapterClickEvents
+ * Displays list of Albums will be shown in the App
  */
 class AlbumsListAdapter(
     private var list: ArrayList<AlbumModel>,
@@ -26,7 +24,7 @@ class AlbumsListAdapter(
     var context: Context? = null
     private var originalList: ArrayList<AlbumModel> = list
 
-    // view holder class
+
     inner class ViewClass(val binding: SingleRowAlbumBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model: AlbumModel) {
@@ -34,7 +32,7 @@ class AlbumsListAdapter(
         }
     }
 
-    // create the view
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewClass {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: SingleRowAlbumBinding =
@@ -43,19 +41,16 @@ class AlbumsListAdapter(
         return ViewClass(binding)
     }
 
-    // bind/set data to view
     override fun onBindViewHolder(holder: ViewClass, position: Int) {
         holder.bind(list[position])
         holder.binding.parentView.setOnClickListener {
             listener.onClick(list[position])
         }
 
-        Picasso.get().load(list[position].thumbnailUrl)
-            .placeholder(R.drawable.placeholder)
-            .error(R.drawable.placeholder).into(holder.binding.image)
+        loadImage(position, holder)
     }
 
-    // how many view items to create
+
     override fun getItemCount(): Int {
         return list.size
     }
@@ -70,7 +65,6 @@ class AlbumsListAdapter(
             notifyDataSetChanged()
         } else {
             val tempList: ArrayList<AlbumModel> = ArrayList()
-            // loop over all albums and find albums with title matching the user query
             for (row in originalList) {
                 if (row.title.toLowerCase(Locale.ENGLISH)
                         .contains(charString.toLowerCase(Locale.ENGLISH))
@@ -81,8 +75,21 @@ class AlbumsListAdapter(
                 }
             }
             list = tempList
-            // notify adapter about data changes
             notifyDataSetChanged()
+        }
+    }
+
+    private fun loadImage(
+        position: Int,
+        holder: ViewClass
+    ) {
+        context?.getDrawable(R.drawable.placeholder)?.let {
+            list[position].thumbnailUrl?.let { it1 ->
+                holder.binding.image.load(
+                    it1,
+                    it
+                )
+            }
         }
     }
 

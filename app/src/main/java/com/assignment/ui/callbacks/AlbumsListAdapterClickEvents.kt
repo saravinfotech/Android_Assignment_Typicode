@@ -1,4 +1,4 @@
-package com.assignment.ui.interfaces
+package com.assignment.ui.callbacks
 
 import com.assignment.data.models.AlbumModel
 

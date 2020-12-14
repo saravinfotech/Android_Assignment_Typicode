@@ -2,9 +2,6 @@ package com.assignment
 
 import java.io.InputStreamReader
 
-/**
- * MockResponseFileReader is used to read the contents of provided file path
- */
 class MockResponseFileReader(path: String) {
 
     var content: String = ""

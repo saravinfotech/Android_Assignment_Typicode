@@ -10,9 +10,7 @@ import com.assignment.data.models.PostModel
 import com.assignment.databinding.SingleRowUserCommentBinding
 
 /**
- * UserCommentsAdapter controls how the list of user comments will be shown in the App
- *
- * Takes 1 arguments - ArrayList of PostModels
+ * Used for displaying the user comments on details page
  */
 class UserCommentsAdapter(
     private var list: ArrayList<PostModel>
@@ -20,7 +18,6 @@ class UserCommentsAdapter(
 
     var context: Context? = null
 
-    // view holder class
     inner class ViewClass(val binding: SingleRowUserCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(model: PostModel) {
@@ -28,7 +25,6 @@ class UserCommentsAdapter(
         }
     }
 
-    // create the view
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewClass {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: SingleRowUserCommentBinding =
@@ -37,12 +33,10 @@ class UserCommentsAdapter(
         return ViewClass(binding)
     }
 
-    // bind/set data to view
     override fun onBindViewHolder(holder: ViewClass, position: Int) {
         holder.bind(list[position])
     }
 
-    // how many view items to create
     override fun getItemCount(): Int {
         return list.size
     }
