@@ -1,4 +1,4 @@
-package com.assignment
+package com.assignment.common
 
 import java.io.InputStreamReader
 

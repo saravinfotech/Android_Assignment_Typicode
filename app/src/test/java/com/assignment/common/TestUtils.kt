@@ -1,7 +1,7 @@
-package com.assignment.util
+package com.assignment.common
 
-import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 @Suppress("UnstableApiUsage")
 class TestUtils {
