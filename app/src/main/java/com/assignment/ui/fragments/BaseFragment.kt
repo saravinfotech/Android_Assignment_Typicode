@@ -2,19 +2,22 @@ package com.assignment.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.assignment.common.ErrorHandler
 import com.assignment.common.GenericResponse
 import com.assignment.data.enums.Status
+import com.assignment.databinding.FragmentBaseBinding
 import com.assignment.viewutils.MessageType
-import kotlinx.android.synthetic.main.view_progressbar.*
 
 
 open class BaseFragment : Fragment() {
 
+    private var binding: FragmentBaseBinding? = null
 
     //Initialization of third party libraries
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,14 +25,23 @@ open class BaseFragment : Fragment() {
 
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentBaseBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
 
-    fun showLoading(isShowing: Boolean = false){
+
+    fun showLoading(isShowing: Boolean = false) {
         try {
-            if (isShowing && container != null) {
-                container.bringToFront()
-                container.visibility = View.VISIBLE
-            } else if (container != null) {
-                container.visibility = View.GONE
+            if (isShowing) {
+                binding!!.container.bringToFront()
+                binding!!.container.visibility = View.VISIBLE
+            } else {
+                binding!!.container.visibility = View.GONE
             }
         } catch (e: Exception) {
             e.printStackTrace()

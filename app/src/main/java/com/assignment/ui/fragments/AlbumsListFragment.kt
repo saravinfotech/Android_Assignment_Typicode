@@ -39,6 +39,7 @@ class AlbumsListFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentAlbumsListBinding.inflate(inflater, container, false)
         return binding?.root
     }

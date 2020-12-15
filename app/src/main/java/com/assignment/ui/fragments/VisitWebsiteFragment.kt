@@ -14,7 +14,6 @@ import com.assignment.R
 import com.assignment.common.Logger
 import com.assignment.databinding.FragmentVisitWebsiteBinding
 import com.assignment.viewutils.MessageType
-import kotlinx.android.synthetic.main.fragment_visit_website.*
 
 class VisitWebsiteFragment : Fragment() {
 
@@ -43,7 +42,7 @@ class VisitWebsiteFragment : Fragment() {
                     /**
                      * if new url is null then load previous url else load new url
                      */
-                    webView.loadUrl(urlToLoad ?: url)
+                    binding!!.webView.loadUrl(urlToLoad ?: url)
                     return true
                 }
 
@@ -72,7 +71,7 @@ class VisitWebsiteFragment : Fragment() {
 
             // load url
             Logger.info("webView.loadUrl(url) - $url")
-            webView.loadUrl(url)
+            binding!!.webView.loadUrl(url)
 
         }
     }
