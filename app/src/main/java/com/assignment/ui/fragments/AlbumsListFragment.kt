@@ -116,7 +116,7 @@ class AlbumsListFragment : BaseFragment() {
     }
 
     private fun handleSearchViewTextChange(layout: FragmentAlbumsListBinding) {
-        layout.searchBoxEdt.addTextChangedListener(object : TextWatcher {
+        layout.searchView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(
                 s: CharSequence?,
@@ -136,9 +136,9 @@ class AlbumsListFragment : BaseFragment() {
     private fun handleSearchViewClickAction(layout: FragmentAlbumsListBinding) {
         layout.cancel.setOnClickListener {
             // remove text from search box
-            layout.searchBoxEdt.setText("")
+            layout.searchView.setText("")
             // remove its focus
-            layout.searchBoxEdt.clearFocus()
+            layout.searchView.clearFocus()
             // reset adapter
             albumsListAdapter.searchFilter("")
             // hide keyboard
@@ -166,7 +166,7 @@ class AlbumsListFragment : BaseFragment() {
                 }
             })
 
-        layout.recView.let {
+        layout.albumListRecyclerView.let {
             it.layoutManager = LinearLayoutManager(requireActivity())
             it.adapter = albumsListAdapter
         }

@@ -1,4 +1,4 @@
-package com.assignment.ui.viewModels
+package com.assignment.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.assignment.common.MainCoroutineRule

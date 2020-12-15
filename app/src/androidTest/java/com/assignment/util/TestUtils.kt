@@ -1,16 +1,27 @@
-package com.assignment.util
+package com.assignment
 
-import com.google.common.reflect.TypeToken
-import com.google.gson.Gson
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.matcher.BoundedMatcher
+import org.hamcrest.Description
+import org.hamcrest.Matcher
 
-@Suppress("UnstableApiUsage")
-class TestUtils {
+fun atPosition(
+    position: Int,
+    itemMatcher: Matcher<View?>
+): Matcher<View?> {
+    return object : BoundedMatcher<View?, RecyclerView>(RecyclerView::class.java) {
+        override fun describeTo(description: Description) {
+            description.appendText("has item at position $position: ")
+            itemMatcher.describeTo(description)
+        }
 
-    companion object {
-
-        inline fun <reified T> fromJson(path: String): T {
-            val json = MockResponseFileReader(path).content
-            return Gson().fromJson(json, object : TypeToken<T>() {}.type)
+        override fun matchesSafely(view: RecyclerView): Boolean {
+            val viewHolder = view.findViewHolderForAdapterPosition(position)
+                ?: // has no item on such position
+                return false
+            return itemMatcher.matches(viewHolder.itemView)
         }
     }
 }
+

@@ -9,7 +9,7 @@ import com.assignment.data.models.AlbumModel
 import com.assignment.data.models.AlbumPhotosModel
 import com.assignment.data.models.PostModel
 import com.assignment.data.models.UserModel
-import com.assignment.util.TestUtils
+import com.assignment.util.GsonUtil
 import com.assignment.util.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import junit.framework.TestCase.assertEquals
@@ -44,7 +44,7 @@ class LocalRepoTest {
 
     @Test
     fun testAddAlbums() = runBlockingTest {
-        val albumFromJSON = TestUtils.fromJson<List<AlbumModel>>("albums_response.json")
+        val albumFromJSON = GsonUtil.fromJson<List<AlbumModel>>("albums_response.json")
         localRepo.addAlbums(albumFromJSON)
 
         val albumFromDB = localRepo.getAlbums().getOrAwaitValue()
@@ -54,7 +54,7 @@ class LocalRepoTest {
 
     @Test
     fun testAddUser() = runBlockingTest {
-        val userDetailFromJSON = TestUtils.fromJson<UserModel>("user_response_4.json")
+        val userDetailFromJSON = GsonUtil.fromJson<UserModel>("user_response_4.json")
         localRepo.addUser(userDetailFromJSON)
 
         val userDetailFromDB = localRepo.getUser(userDetailFromJSON.id).getOrAwaitValue()
@@ -64,7 +64,7 @@ class LocalRepoTest {
 
     @Test
     fun testAddAlbumPhotos() = runBlockingTest {
-        val albumPhotosFromJSON = TestUtils.fromJson<List<AlbumPhotosModel>>("album_photos.json")
+        val albumPhotosFromJSON = GsonUtil.fromJson<List<AlbumPhotosModel>>("album_photos.json")
         localRepo.addAlbumPhotos(albumPhotosFromJSON)
 
         val albumPhotoFromDB =
@@ -74,7 +74,7 @@ class LocalRepoTest {
 
     @Test
     fun testAddPostModel() = runBlockingTest {
-        val albumPostsFromJson = TestUtils.fromJson<List<PostModel>>("album_posts.json")
+        val albumPostsFromJson = GsonUtil.fromJson<List<PostModel>>("album_posts.json")
         localRepo.addPostModel(albumPostsFromJson[0])
 
         val albumPostFromDB = localRepo.getPostById(albumPostsFromJson[0].id).getOrAwaitValue()
@@ -83,7 +83,7 @@ class LocalRepoTest {
 
     @Test
     fun testAddPostModels() = runBlockingTest {
-        val albumPostsFromJson = TestUtils.fromJson<List<PostModel>>("album_posts.json")
+        val albumPostsFromJson = GsonUtil.fromJson<List<PostModel>>("album_posts.json")
         localRepo.addPostModels(albumPostsFromJson)
 
         val albumPostFromDB =

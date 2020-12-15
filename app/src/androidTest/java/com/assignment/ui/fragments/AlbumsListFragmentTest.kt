@@ -8,9 +8,9 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.assignment.BaseTestClass
 import com.assignment.R
 import com.assignment.atPosition
+import com.assignment.ui.BaseTestClass
 import com.assignment.util.*
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
@@ -63,7 +63,7 @@ class AlbumsListFragmentTest : BaseTestClass() {
 
         val materialEditText = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.searchBoxEdt),
+                ViewMatchers.withId(R.id.searchView),
                 childAtPosition(
                     childAtPosition(
                         ViewMatchers.withClassName(Matchers.`is`("android.widget.LinearLayout")),
@@ -105,7 +105,7 @@ class AlbumsListFragmentTest : BaseTestClass() {
                     val sortedModels = models.sortedBy { it.title }
                     val modelAt1Title = sortedModels[1].title
 
-                    Espresso.onView(ViewMatchers.withId(R.id.recView))
+                    Espresso.onView(ViewMatchers.withId(R.id.albumListRecyclerView))
                         .check(
                             matches(
                                 atPosition(

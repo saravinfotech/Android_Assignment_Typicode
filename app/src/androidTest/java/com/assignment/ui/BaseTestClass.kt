@@ -1,4 +1,4 @@
-package com.assignment
+package com.assignment.ui
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.assignment.data.api.ApiService

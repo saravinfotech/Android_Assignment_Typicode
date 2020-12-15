@@ -55,7 +55,7 @@
                     android:layout_weight="7">
 
                     <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/searchBoxEdt"
+                        android:id="@+id/searchView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/search"
@@ -89,7 +89,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recView"
+                android:id="@+id/albumListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

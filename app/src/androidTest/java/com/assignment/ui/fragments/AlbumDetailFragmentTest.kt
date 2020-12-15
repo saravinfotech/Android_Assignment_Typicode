@@ -7,8 +7,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.assignment.BaseTestClass
 import com.assignment.R
+import com.assignment.ui.BaseTestClass
 import com.assignment.util.clickFirstItemInAlbum
 import com.assignment.util.sleep
 import com.assignment.util.viewMatcher
@@ -92,13 +92,13 @@ class AlbumDetailFragmentTest : BaseTestClass() {
             .check(matches(withText("Visit Website")))
 
 
-        onView(withId(R.id.albumPhotosManager)).check(matches(isDisplayed()))
-        onView(withId(R.id.albumPhotosManager))
+        onView(withId(R.id.viewPhotosButton)).check(matches(isDisplayed()))
+        onView(withId(R.id.viewPhotosButton))
             .check(matches(withText("Show Album Photos")))
 
-        onView(withId(R.id.albumPhotosManager)).perform(click())
-        onView(withId(R.id.albumPhotosManager))
+        onView(withId(R.id.viewPhotosButton)).perform(click())
+        onView(withId(R.id.viewPhotosButton))
             .check(matches(withText("Hide Album Photos")))
-        onView(withId(R.id.albumPhotosManager)).perform(click())
+        onView(withId(R.id.viewPhotosButton)).perform(click())
     }
 }

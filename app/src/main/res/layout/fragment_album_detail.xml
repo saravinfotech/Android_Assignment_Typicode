@@ -224,7 +224,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/albumPhotosManager"
+                        android:id="@+id/viewPhotosButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/hollow_bg_blue"
@@ -235,7 +235,7 @@
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/albumPhotosRecView"
+                        android:id="@+id/albumPhotosRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -251,7 +251,7 @@
                         android:background="@color/app_layout_divider_color" />
 
                     <TextView
-                        android:id="@+id/commentsManager"
+                        android:id="@+id/viewCommentsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/hollow_bg_blue"
@@ -262,7 +262,7 @@
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/commentsRecView"
+                        android:id="@+id/commentsRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"

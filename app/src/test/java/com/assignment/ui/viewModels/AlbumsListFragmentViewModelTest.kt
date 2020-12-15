@@ -4,6 +4,7 @@ import com.assignment.common.TestConstants.ALBUM_MODEL
 import com.assignment.common.getOrAwaitValue
 import com.assignment.data.repositories.remote.FakeLocalRepoImpl
 import com.assignment.data.repositories.remote.FakeRemoteRepoImpl
+import com.assignment.ui.BaseTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Before

@@ -95,7 +95,7 @@ fun getTitleMenu(menu: String): ViewInteraction? {
 
 fun clickFirstItemInAlbum() {
     sleep()
-    Espresso.onView(ViewMatchers.withId(R.id.recView))
+    Espresso.onView(ViewMatchers.withId(R.id.albumListRecyclerView))
         .perform(
             RecyclerViewActions.actionOnItemAtPosition<AlbumsListAdapter.ViewClass>(
                 0,

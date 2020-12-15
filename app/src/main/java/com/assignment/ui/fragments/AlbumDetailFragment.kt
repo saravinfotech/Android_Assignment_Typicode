@@ -133,10 +133,10 @@ class AlbumDetailFragment : BaseFragment() {
     }
 
     private fun handleCommentsSection(layout: FragmentAlbumDetailBinding) {
-        layout.commentsManager.setOnClickListener {
+        layout.viewCommentsButton.setOnClickListener {
             val visibility: Int
             val text: String
-            if (layout.commentsRecView.visibility == View.VISIBLE) {
+            if (layout.commentsRecyclerView.visibility == View.VISIBLE) {
                 visibility = View.GONE
                 text = getString(R.string.show_comments)
             } else {
@@ -144,17 +144,17 @@ class AlbumDetailFragment : BaseFragment() {
                 text = getString(R.string.hide_comments)
             }
 
-            layout.commentsRecView.visibility = visibility
-            layout.commentsManager.text = text
+            layout.commentsRecyclerView.visibility = visibility
+            layout.viewCommentsButton.text = text
         }
     }
 
     private fun handlePhotosSection(layout: FragmentAlbumDetailBinding) {
-        layout.albumPhotosManager.setOnClickListener {
+        layout.viewPhotosButton.setOnClickListener {
 
             val visibility: Int
             val displayText: String
-            if (layout.albumPhotosRecView.visibility == View.VISIBLE) {
+            if (layout.albumPhotosRecyclerView.visibility == View.VISIBLE) {
                 visibility = View.GONE
                 displayText = getString(R.string.show_album_photos)
             } else {
@@ -162,15 +162,15 @@ class AlbumDetailFragment : BaseFragment() {
                 displayText = getString(R.string.hide_album_photos)
             }
 
-            layout.albumPhotosRecView.visibility = visibility
-            layout.albumPhotosManager.text = displayText
+            layout.albumPhotosRecyclerView.visibility = visibility
+            layout.viewPhotosButton.text = displayText
         }
     }
 
     private fun initUserCommentsSection(layout: FragmentAlbumDetailBinding) {
         userCommentsAdapter = UserCommentsAdapter(listOfPosts)
 
-        layout.commentsRecView.let {
+        layout.commentsRecyclerView.let {
             it.layoutManager = LinearLayoutManager(requireActivity())
             it.adapter = userCommentsAdapter
         }
@@ -180,7 +180,7 @@ class AlbumDetailFragment : BaseFragment() {
         albumPhotosAdapter = AlbumPhotosAdapter(listOfAlbumPhotos, imagesCountInSingleRow)
 
         // attaching layout manager and adapter with recyclerview
-        layout.albumPhotosRecView.let {
+        layout.albumPhotosRecyclerView.let {
             it.layoutManager = GridLayoutManager(
                 requireActivity(), imagesCountInSingleRow, GridLayoutManager.VERTICAL, false
             )

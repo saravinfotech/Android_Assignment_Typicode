@@ -6,6 +6,7 @@ import com.assignment.common.TestConstants.USER_MODEL
 import com.assignment.common.getOrAwaitValue
 import com.assignment.data.repositories.remote.FakeLocalRepoImpl
 import com.assignment.data.repositories.remote.FakeRemoteRepoImpl
+import com.assignment.ui.BaseTest
 import com.google.common.truth.Truth.assertThat
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
