@@ -25,6 +25,7 @@ open class BaseTestClass {
     lateinit var apiService: ApiService
     lateinit var placeholderApi: RemoteRepo
 
+
     @Before
     fun init() {
         server.start(serverPort)

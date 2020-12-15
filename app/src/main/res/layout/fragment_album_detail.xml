@@ -18,6 +18,7 @@
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/albumDetailsSection"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
@@ -41,6 +42,7 @@
                     android:padding="10dp">
 
                     <TextView
+                        android:id="@+id/albumTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{postModel.title}"
@@ -49,6 +51,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/titleLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -101,6 +104,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/userDetailsHeader"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/user_details"
@@ -126,6 +130,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/userNameLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -152,6 +157,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/userEmailLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -169,6 +175,7 @@
                             android:padding="10dp">
 
                             <TextView
+                                android:id="@+id/userPhoneNumber"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{userModel.phone}"
@@ -177,6 +184,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/userPhoneLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -196,6 +204,7 @@
                             android:padding="10dp">
 
                             <TextView
+                                android:id="@+id/visitWebsiteLabel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/view_website"
