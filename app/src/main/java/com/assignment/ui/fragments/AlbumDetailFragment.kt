@@ -138,10 +138,10 @@ class AlbumDetailFragment : BaseFragment() {
             val text: String
             if (layout.commentsRecyclerView.visibility == View.VISIBLE) {
                 visibility = View.GONE
-                text = getString(R.string.show_comments)
+                text = getString(R.string.show_posts)
             } else {
                 visibility = View.VISIBLE
-                text = getString(R.string.hide_comments)
+                text = getString(R.string.hide_posts)
             }
 
             layout.commentsRecyclerView.visibility = visibility

@@ -11,8 +11,8 @@
     <string name="user_details">User Details</string>
     <string name="show_album_photos">Show Album Photos</string>
     <string name="hide_album_photos">Hide Album Photos</string>
-    <string name="show_comments">Show Comments</string>
-    <string name="hide_comments">Hide Comments</string>
+    <string name="show_posts">Show Other Posts</string>
+    <string name="hide_posts">Hide Posts</string>
     <string name="ok">OK</string>
 
     <string name="title">Title</string>
