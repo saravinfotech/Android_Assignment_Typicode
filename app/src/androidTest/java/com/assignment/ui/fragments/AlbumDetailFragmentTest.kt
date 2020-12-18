@@ -94,11 +94,11 @@ class AlbumDetailFragmentTest : BaseTestClass() {
 
         onView(withId(R.id.viewPhotosButton)).check(matches(isDisplayed()))
         onView(withId(R.id.viewPhotosButton))
-            .check(matches(withText("Show Other Posts")))
+            .check(matches(withText("Show Album Photos")))
 
         onView(withId(R.id.viewPhotosButton)).perform(click())
         onView(withId(R.id.viewPhotosButton))
-            .check(matches(withText("Hide Posts")))
+            .check(matches(withText("Hide Album Photos")))
         onView(withId(R.id.viewPhotosButton)).perform(click())
     }
 }
